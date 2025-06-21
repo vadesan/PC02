@@ -21,6 +21,7 @@
           option-label="label"
           label="Desde"
           filled-class="q-mb-md"
+          :rules="[val => !!val || 'La moneda origen es requerida']"
           @update:model-value="showConversion = false"
         />
         <q-select
@@ -31,6 +32,7 @@
           option-label="label"
           label="Hacia"
           filled-class="q-mb-md"
+          :rules="[val => !!val || 'La moneda destino es requerida']"
           @update:model-value="showConversion = false"
         />
         <div class="row justify-center q-mb-md">
