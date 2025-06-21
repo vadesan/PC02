@@ -1,7 +1,7 @@
 <template>
-  <q-card class="q-pa-lg" style="max-width: 400px; margin: auto;">
+  <q-card class="q-pa-lg" style="max-width: 500px; margin: auto;">
     <q-card-section>
-      <div class="text-h5 q-mb-md">Conversor de monedas</div>
+      <div class="text-h5 q-mb-md text-center">Conversión de Monedas</div>
       <q-form @submit.prevent="convierte" class="q-gutter-md">
         <q-input
           v-model="form.monto"
@@ -13,28 +13,32 @@
           autofocus
           @change="showConversion = false"
         />
-        <q-select
-          filled
-          v-model="form.desde"
-          :options="listaMonedas"
-          option-value="id"
-          option-label="label"
-          label="Desde"
-          filled-class="q-mb-md"
-          :rules="[val => !!val || 'La moneda origen es requerida']"
-          @update:model-value="showConversion = false"
-        />
-        <q-select
-          filled
-          v-model="form.hacia"
-          :options="listaMonedas"
-          option-value="id"
-          option-label="label"
-          label="Hacia"
-          filled-class="q-mb-md"
-          :rules="[val => !!val || 'La moneda destino es requerida']"
-          @update:model-value="showConversion = false"
-        />
+        <div class="selectores-moneda q-gutter-sm">
+          <q-select
+            filled
+            v-model="form.desde"
+            :options="listaMonedas"
+            option-value="id"
+            option-label="label"
+            label="Desde"
+            filled-class="q-mb-md"
+            :rules="[val => !!val || 'La moneda origen es requerida']"
+            @update:model-value="showConversion = false"
+            class="select-field"
+          />
+          <q-select
+            filled
+            v-model="form.hacia"
+            :options="listaMonedas"
+            option-value="id"
+            option-label="label"
+            label="Hacia"
+            filled-class="q-mb-md"
+            :rules="[val => !!val || 'La moneda destino es requerida']"
+            @update:model-value="showConversion = false"
+            class="select-field"
+          />
+        </div>
         <div class="row justify-center q-mb-md">
           <q-btn
             round
@@ -63,6 +67,13 @@
 </template>
 
 <style>
+.selectores-moneda {
+  display: flex;
+  justify-content: space-between;
+}
+.select-field {
+  width: calc(50% - 10px);
+}
 </style>
 
 <script>
