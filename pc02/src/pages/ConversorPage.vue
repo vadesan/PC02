@@ -12,7 +12,7 @@
           :min="1"
           label="Monto"
           filled
-          :rules="[val => !!val || 'El monto es requerido']"
+          :rules="[val => !!val || 'Ingrese un monto válido']"
           autofocus
           @change="showConversion = false"
         />
@@ -128,7 +128,9 @@ export default {
       if(this.form.desde.id == this.form.hacia.id) {
         this.$q.notify({
           type: 'negative',
-          message: '¡Ha seleccionado la misma moneda!'
+          message: '¡Ha seleccionado la misma moneda!',
+          position: 'top',
+          timeout: 3000
         });
         return;
       }
