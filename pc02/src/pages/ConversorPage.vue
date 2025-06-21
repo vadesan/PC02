@@ -1,7 +1,10 @@
 <template>
   <q-card class="q-pa-lg" style="max-width: 500px; margin: auto;">
     <q-card-section>
-      <div class="text-h5 q-mb-md text-center">Conversión de Monedas</div>
+      <div class="text-h5 q-mb-md text-center" style="margin-bottom: 30px;">
+        <q-icon name="trending_up" class="q-mr-sm" color="secondary" />
+        Conversión de Monedas
+      </div>
       <q-form @submit.prevent="convierte" class="q-gutter-md">
         <q-input
           v-model="form.monto"
@@ -56,10 +59,9 @@
           class="full-width q-mt-md"
         />
       </q-form>
-      <q-banner v-if="showConversion" class="q-mt-md">
-        <div>
-          {{ form.monto }} {{ form.desde.label }} es equivalente a
-          {{ convertido.rate }} {{ form.hacia.label }}.
+      <q-banner v-if="showConversion" class="q-mt-md text-center">
+        <div class="text-h6">
+          {{ form.monto }} {{ form.desde.id }} equivalen a {{ convertido.rate }} {{ form.hacia.id }}
         </div>
       </q-banner>
     </q-card-section>
@@ -107,7 +109,7 @@ export default {
           console.log('Monedas cargadas:', response.data);
           this.listaMonedas = Object.entries(response.data).map(([id, label]) => ({
             id,
-            label
+            label: `${id} - ${label}`
           }));
         })
         .catch(error => {
